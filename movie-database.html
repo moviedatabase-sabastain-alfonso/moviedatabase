@@ -9,34 +9,41 @@
 </head>
 <body>
     <header>
-    <div>
-        <h1 class="text-center">Movie Application</h1>
+    <div class="bg-info" >
+        <ul id="divTest">
+
+        </ul>
+<!--        <h1 id="divTest" class="text-center">Movie Application</h1>-->
     </div>
     </header>
 
 <!-- start: display movie info on load of page-->
-  <nav class="navbar sticky-top navbar-light mb-0" style="">
-      <h3 class="text-center" >Movies</h3>
-      <div class="container">
-          <div class="row text-center">
-              <div class="column border" style="width: 100px;">
-                  <a class="" href="#">Menu</a>
-              </div>
-              <div class="column border" style="width: 100px;">
-                  <a class="" href="#">Menu</a>
-              </div>
-              <div class="column border" style="width: 100px;">
-                  <a class="" href="#">Menu</a>
-              </div>
-              <div class="column border" style="width: 100px;">
-                  <a class="" href="#">Menu</a>
-              </div>
-              <div class="column border" style="width: 100px;">
-                  <a class="" href="#">Menu</a>
-              </div>
-          </div>
-      </div>
-  </nav>
+    <div class="card-group">
+        <div class="card">
+<!--            <img id="posterOne" src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <h5 id="movieTitle1" class="card-title">Movie Title</h5>
+                <p id="plotOne" class="card-text"></p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+<!--            <img src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <h5 id="movieTitle2" class="card-title">Movie Title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+        <div class="card">
+<!--            <img src="..." class="card-img-top" alt="...">-->
+            <div class="card-body">
+                <h5 id="movieTitle3" class="card-title">Movie Title</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>
 <!--    end: display of movie info on load of page-->
 <!--    start: search label and button -->
   <div class="text-center ">
