@@ -4,7 +4,12 @@
 
     const API_URL = `https://upbeat-hail-splash.glitch.me/movies`;
 
-    const API_OMBD_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=37903b1f`
+    const API_OMBD_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${OMBD_API}`;
+
+    let getOmbdData = () =>{
+        return fectch(API_OMBD_URL).then(response => response.json()).catch(error => console.error(error));
+    }
+    getOmbdData().then(data => console.log(data));
 
     // function to retrieve/fetch movie info from glitch database
     let getMovieInfo = () =>{
