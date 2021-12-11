@@ -1,22 +1,33 @@
 "use strict";
 
 (function(){
-
+    //glitch database
     const API_URL = `https://upbeat-hail-splash.glitch.me/movies`;
 
-    const API_OMBD_URL = `http://www.omdbapi.com/?i=tt3896198&apikey=${OMBD_API}`;
-
-    let getOmbdData = () =>{
-        return fectch(API_OMBD_URL).then(response => response.json()).catch(error => console.error(error));
+    // OMBD API Search Function
+    let getOmbdData = (search) =>{
+        const API_OMBD_URL = `http://www.omdbapi.com/?s=${search}&apikey=${OMBD_API}&`;
+        return fetch(API_OMBD_URL+search).then(response => response.json()).catch(error => console.error(error));
     }
-    getOmbdData().then(data => console.log(data));
+    getOmbdData("matrix").then(data => console.log(data));
 
     // function to retrieve/fetch movie info from glitch database
     let getMovieInfo = () =>{
         return fetch(API_URL).then(response => response.json()).catch(error => console.error(error));
     }
-    // calls function
-    getMovieInfo().then(data => console.log(data));
+
+
+    let renderMovieInfo = () =>{
+        getMovieInfo().then(data => {
+            data.forEach(function(element){
+                console.log(element.id);
+                return $('#divTest').append(`<li> Movie Title: ${element.title}, Movie Id: ${element.id}</li>`);
+            })
+        });
+    }
+    renderMovieInfo();
+
+
 
 
     // function to retrieve movie by id
