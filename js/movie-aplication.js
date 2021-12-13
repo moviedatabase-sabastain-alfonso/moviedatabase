@@ -21,7 +21,7 @@
         getMovieInfo().then(data => {
             data.forEach(function(element){
                 // console.log(element.id);
-                return $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${element.title}, <strong>Movie Id: </strong>${element.id}, <strong>Movie Plot: </strong>"${element.plot}"</div>`);
+                return $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${element.title}, <strong>Movie Id: </strong>${element.id}, <strong>Movie Plot: </strong>"${element.plot}"</div> `);
             })
         });
     }
@@ -30,18 +30,18 @@
 
     // search function
     $('#searchMovieBtn').click(function(){
-
         let movieSearch = $("#searchTitle").val();
         $("#container").html(" ");
         console.log(movieSearch);
         getMovieInfo().then(data => {
             data.forEach(function(movie){
                 if(movie.title === movieSearch || movie.id === Number(movieSearch))  {
-                    $('#searchMovieDisplay').append(`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`);
+                    $('#searchMovieDisplay').append(`<div class="card bg-info"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>${movie.plot}</div>`);
                     $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`);
                 }
             })
         })
+        $("#searchTitle").val(" ");
     })
 
 
@@ -92,6 +92,8 @@
             }
             createMovie(movieTemplate).then(data => console.log(data));
         })
+        $("#createTitle").val(" ");
+        $("#createYear").val(" ");
     })
 
 
@@ -115,10 +117,11 @@
         console.log(deleteMovie);
         getMovieInfo().then(data => {
             data.forEach(function(movie){
-                if (deleteMovie === movie.title){
+                if (deleteMovie === movie.title || Number(deleteMovie) === movie.id){
                     $('#displayDeleteMovieSelection').append(`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`);
                     // alert((`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`));
                     let confirmed = confirm(`Confirm you would like to delete Movie title:${movie.title} Movie Id: ${movie.id}?`) ? "true" : "false";
+                    if (confirmed === "true"){
                     console.log(confirmed);
                     let deleteMovie = (id) => {
                         let options ={
@@ -130,16 +133,21 @@
                         return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
                     }
                     deleteMovie(movie.id).then(data => console.log(data));
-                    alert(movie.title + "deleted.");
+                    alert(movie.title + " deleted.");
+                    location.reload();
+                    } else {
+                        alert("Requested Aborted!")
+                    }
                 }
             })
         })
+        $("#deleteMovie").val(" ");
     })
     // end: *** end of call ***
 
 
     // start: edit movie function
-    let editMovie = (movie) => {
+    let editMovie = (movie, id) => {
         let options = {
             method: "PATCH",
             headers: {
@@ -147,9 +155,40 @@
             },
             body: JSON.stringify(movie)
         }
-        return fetch(`${API_URL}/${movie.id}`, options).then(response => response.json()).catch(error => console.error(error));
+        return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
     }
     // end of function
+
+   $("#changeMovie").click(function(e){
+       e.preventDefault();
+       $("#displayMovieToEdit").html(" ");
+       $("#container").html(" ");
+       $("#searchMovieDisplay").html(" ");
+       let id = $("#idToEdit").val();
+       console.log(typeof(id));
+       getMovieById(id).then(data => {
+               if (data.id === Number(id)) {
+                   $('#displayMovieToEdit').append(`<div class="card"> <h3>Movie Title: </h3>${data.title}, <strong>Movie Id: </strong>${data.id}, <strong>Movie Plot: </strong>${data.plot}</div>`);
+               }
+           let newTitle = prompt("Enter new title: ");
+           let movie = data.title;
+           console.log(movie);
+           let editTemplate ={
+               actors: data.actors,
+               director: data.director,
+               genre: data.genre,
+               plot: data.plot,
+               poster: data.poster,
+               rating: data.rating,
+               title: newTitle,
+               year: data.year
+           }
+           console.log(newTitle);
+           console.log(editTemplate);
+           editMovie(editTemplate,id).then(data => console.log(data));
+       })
+       $('#idToEdit').val(" ");
+   })
 
 
 
