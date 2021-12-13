@@ -5,117 +5,203 @@
     <title>Movie Application</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/6bffcc9069.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/movie-application.css">
 </head>
 <body>
-    <header>
-    <div class="bg-info" >
-        <ul id="divTest">
 
-        </ul>
-<!--        <h1 id="divTest" class="text-center">Movie Application</h1>-->
+<nav class="navbar sticky-top navbar-light mb-0" style="background-color: black">
+    <h4 class="text-light"><i class="fas fa-film"></i>WELCOME TO GOOD MOVIES</h4>
+    <a class="text-light" href="#">HOME</a>
+    <a class="text-light" href="#">MOVIES</a>
+    <a class="text-light" href="#">NEWS ABOUT ACTORS</a>
+    <a class="text-light" href="#">PRICE <i class="fas fa-list"></i></a>
+</nav>
+<hr>
+
+
+<!--MENU TO DISPLAY AVAILABLE MOVIES-->
+<div id="container" class=" row d-flex"></div>
+
+
+
+    <!--EDIT MENU-->
+<div class="rightSide d-flex row">
+    <div class="">
+        <button id="showEdit" class="btn btn-outline-secondary">Edit</button>
+        <select  id="selectMenu" class="hidden1 select"></select>
+        <div class="hidden1 editMovie" id="editMovie">
+            <label for="newTitle">New Title </label>
+            <input type="text" id="newTitle">
+            <br>
+            <label for="newGenre">New Genre </label>
+            <input type="text" id="newGenre">
+            <br>
+            <label for="newRating">New Rating </label>
+            <input type="text" id="newRating">
+            <br>
+            <label for="newDirector">New Actor </label>
+            <input type="text" id="newDirector">
+            <br>
+            <div class="textBox">
+                <label for="newPlot">Comment </label>
+                <textarea id="newPlot" rows="3" cols="30"></textarea>
+            </div>
+
+            <br>
+            <button id="changeMovie" class="btn btn-outline-secondary">Update Movie</button>
+        </div>
     </div>
-    </header>
+</div>
 
-<!-- start: display movie info on load of page-->
-    <div class="card-group">
-        <div class="card">
-<!--            <img id="posterOne" src="..." class="card-img-top" alt="...">-->
-            <div class="card-body">
-                <h5 id="movieTitle1" class="card-title">Movie Title</h5>
-                <p id="plotOne" class="card-text"></p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
+<!--Post menu-->
+<div class="">
+    <button id="post-id" class="btn btn-outline-secondary">Post Movie</button>
+    <div class="hidden1 editMovie" id="postMovie">
+        <label for="title">Title </label>
+        <input type="text" id="title">
+        <br>
+        <label for="genre">Genre </label>
+        <input type="text" id="genre">
+        <br>
+        <label for="rating">Rating </label>
+        <input type="text" id="rating">
+        <br>
+        <label for="director">Director </label>
+        <input type="text" id="director">
+        <br>
+        <div class="textBox">
+            <label for="plot">Plot </label>
+            <textarea id="plot" rows="5" cols="40"></textarea>
         </div>
-        <div class="card">
-<!--            <img src="..." class="card-img-top" alt="...">-->
-            <div class="card-body">
-                <h5 id="movieTitle2" class="card-title">Movie Title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-<!--            <img src="..." class="card-img-top" alt="...">-->
-            <div class="card-body">
-                <h5 id="movieTitle3" class="card-title">Movie Title</h5>
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
+
+        <br>
+        <button id="newMovie" class="btn button-outline-secondary">Add Movie</button>
     </div>
-<!--    end: display of movie info on load of page-->
-<!--    start: search label and button -->
-  <div class="text-center ">
-    <label for="movieSearch">Search by Name or Id</label>
-    <input id="movieSearch">
-    <buttton type="submit"></buttton>
-  </div>
-<!--    end: search lable and button-->
-    <hr>
-  <!--displays movies-->
-
-<!--    start: Form - place holder-->
-    <main class="container">
-  <div id="container" class="row d-flex ">
-      <div class="text-center border border-primary">
-          <form method=" " action="">
-
-              <label for=" "><h2>Create Form</h2></label>
-              <input id="" name="" type="text">
-              <br>
-
-              <label for="">delete movie </label>
-              <input id="" name="" type="">
-              <br>
-
-              <input type="submit">
-          </form>
-      </div>
-  <div>
-      <div class="text-center border border-primary">
-          <form method=" " action="">
-
-              <label for=" "><h2>Delete Form</h2></label>
-              <input id="" name="" type="text">
-              <br>
-
-              <label for="">delete movie </label>
-              <input id="" name="" type="">
-              <br>
-
-              <input type="submit">
-          </form>
-      </div>
-  </div>
-  <div>
-      <div class="text-center border border-primary">
-          <form method=" " action="">
-
-              <label for=" "><h2>Edit Form</h2></label>
-              <input id="" name="" type="text">
-              <br>
-
-              <label for="">delete movie </label>
-              <input id="" name="" type="">
-              <br>
-
-              <input type="submit">
-          </form>
-      </div>
-  </div>
-  </div>
-    </main>
-
-  <!--edit menu-->
-  <div class="rightSide d-flex row">
-
-  <!--Delete menu-->
-  <div class="">
+</div>
+</div>
 
 
-  <!--Post menu-->
-  <div class="">
+<!--Delete menu-->
+<div class="">
+    <button class="remove-hidden btn btn-outline-secondary">Delete a movie</button>
+    <div class="deleteGroup">
+        <select id="selectMenu2" class="hidden1 select">
+            <option>Delete a movie</option>
+        </select>
+        <button id="delete-movie" class="hidden1 btn btn-danger">Delete movie</button>
+    </div>
+</div>
+
+
+<!--    <header>-->
+<!--    <div class="bg-info" >-->
+<!--        <ul id="divTest">-->
+
+<!--        </ul>-->
+<!--&lt;!&ndash;        <h1 id="divTest" class="text-center">Movie Application</h1>&ndash;&gt;-->
+<!--    </div>-->
+<!--    </header>-->
+
+<!--&lt;!&ndash; start: display movie info on load of page&ndash;&gt;-->
+<!--    <div class="card-group">-->
+<!--        <div class="card">-->
+<!--&lt;!&ndash;            <img id="posterOne" src="..." class="card-img-top" alt="...">&ndash;&gt;-->
+<!--            <div class="card-body">-->
+<!--                <h5 id="movieTitle1" class="card-title">Movie Title</h5>-->
+<!--                <p id="plotOne" class="card-text"></p>-->
+<!--                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card">-->
+<!--&lt;!&ndash;            <img src="..." class="card-img-top" alt="...">&ndash;&gt;-->
+<!--            <div class="card-body">-->
+<!--                <h5 id="movieTitle2" class="card-title">Movie Title</h5>-->
+<!--                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>-->
+<!--                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="card">-->
+<!--&lt;!&ndash;            <img src="..." class="card-img-top" alt="...">&ndash;&gt;-->
+<!--            <div class="card-body">-->
+<!--                <h5 id="movieTitle3" class="card-title">Movie Title</h5>-->
+<!--                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>-->
+<!--                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--&lt;!&ndash;    end: display of movie info on load of page&ndash;&gt;-->
+<!--&lt;!&ndash;    start: search label and button &ndash;&gt;-->
+<!--  <div class="text-center ">-->
+<!--    <label for="movieSearch">Search by Name or Id</label>-->
+<!--    <input id="movieSearch">-->
+<!--    <buttton type="submit"></buttton>-->
+<!--  </div>-->
+<!--&lt;!&ndash;    end: search lable and button&ndash;&gt;-->
+<!--    <hr>-->
+<!--  &lt;!&ndash;displays movies&ndash;&gt;-->
+
+<!--&lt;!&ndash;    start: Form - place holder&ndash;&gt;-->
+<!--    <main class="container">-->
+<!--  <div id="container" class="row d-flex ">-->
+<!--      <div class="text-center border border-primary">-->
+<!--          <form method=" " action="">-->
+
+<!--              <label for=" "><h2>Create Form</h2></label>-->
+<!--              <input id="" name="" type="text">-->
+<!--              <br>-->
+
+<!--              <label for="">delete movie </label>-->
+<!--              <input id="" name="" type="">-->
+<!--              <br>-->
+
+<!--              <input type="submit">-->
+<!--          </form>-->
+<!--      </div>-->
+<!--  <div>-->
+<!--      <div class="text-center border border-primary">-->
+<!--          <form method=" " action="">-->
+
+<!--              <label for=" "><h2>Delete Form</h2></label>-->
+<!--              <input id="" name="" type="text">-->
+<!--              <br>-->
+
+<!--              <label for="">delete movie </label>-->
+<!--              <input id="" name="" type="">-->
+<!--              <br>-->
+
+<!--              <input type="submit">-->
+<!--          </form>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--  <div>-->
+<!--      <div class="text-center border border-primary">-->
+<!--          <form method=" " action="">-->
+
+<!--              <label for=" "><h2>Edit Form</h2></label>-->
+<!--              <input id="" name="" type="text">-->
+<!--              <br>-->
+
+<!--              <label for="">delete movie </label>-->
+<!--              <input id="" name="" type="">-->
+<!--              <br>-->
+
+<!--              <input type="submit">-->
+<!--          </form>-->
+<!--      </div>-->
+<!--  </div>-->
+<!--  </div>-->
+<!--    </main>-->
+
+<!--  &lt;!&ndash;edit menu&ndash;&gt;-->
+<!--  <div class="rightSide d-flex row">-->
+
+<!--  &lt;!&ndash;Delete menu&ndash;&gt;-->
+<!--  <div class="">-->
+
+
+<!--  &lt;!&ndash;Post menu&ndash;&gt;-->
+<!--  <div class="">-->
 
       <script src="js/keys.js"></script>
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"
@@ -126,3 +212,8 @@
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </body>
 </html>
+
+
+
+
+

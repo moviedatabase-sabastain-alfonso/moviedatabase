@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+
+
+
+body {
+    background-color: lightseagreen;
+    font-family: Roboto Light;
+
+}
+
+#container{
+    display: flex;
+    justify-content: space-around;
+}
+
+.editMovie{
+    border: 2px solid darkblue;
+    padding: 3em;
+    border-radius: 1em;
+    background: darkorchid;
+}
+.posters{
+    padding: 5em 10em;
+    margin: 5em;
+    width: 10em;
+    height: auto;
+    border: 2em;
+    background-color: darkorchid;
+}
+
+.posters{
+
+
+}
+
+/*@keyframes animatedgradient {*/
+/*    0% {*/
+/*        background-position: 0 100%;*/
+/*    }*/
+/*    50% {*/
+/*        background-position: 100% 50%;*/
+/*    }*/
+/*    100% {*/
+/*        background-position: 0 50%;*/
+/*    }*/
+/*}*/

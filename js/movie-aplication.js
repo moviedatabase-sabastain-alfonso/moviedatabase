@@ -29,7 +29,6 @@
 
 
 
-
     // function to retrieve movie by id
     let getMovieById =(id) => {
         return fetch(`${API_URL}/${id}`).then(response => response.json()).catch(error => console.error(error));
@@ -75,31 +74,10 @@
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 })();
+
+
+
+
+
+
