@@ -58,29 +58,42 @@
 <div class="">
     <button id="post-id" class="btn btn-outline-secondary">Post Movie</button>
     <div class="hidden1 editMovie" id="postMovie">
-        <label for="title">Title </label>
-        <input type="text" id="title">
+        <label for="createTitle">Title </label>
+        <input type="text" id="createTitle">
         <br>
-        <label for="genre">Genre </label>
-        <input type="text" id="genre">
+        <label for="createYear">Year </label>
+        <input type="text" id="createYear">
         <br>
-        <label for="rating">Rating </label>
-        <input type="text" id="rating">
-        <br>
-        <label for="director">Director </label>
-        <input type="text" id="director">
-        <br>
-        <div class="textBox">
-            <label for="plot">Plot </label>
-            <textarea id="plot" rows="5" cols="40"></textarea>
-        </div>
-
+<!--        <label for="rating">Rating </label>-->
+<!--        <input type="text" id="rating">-->
+<!--        <br>-->
+<!--        <label for="director">Director </label>-->
+<!--        <input type="text" id="director">-->
+<!--        <br>-->
+<!--        <div class="textBox">-->
+<!--            <label for="plot">Plot </label>-->
+<!--            <textarea id="plot" rows="5" cols="40"></textarea>-->
+<!--        </div>-->
+        <div id="postMovieDisplay"></div>
         <br>
         <button id="newMovie" class="btn button-outline-secondary">Add Movie</button>
     </div>
 </div>
+<!--</div>-->
+<div class="">
+    <div class="hidden1 editMovie">
+        <h3>Search Comments</h3>
+        <label for="searchTitle">Title </label>
+        <input  id="searchTitle" type="text">
+        <br>
+<!--        <label for="searchMovieId">Movie Id </label>-->
+<!--&lt;!&ndash;        <input id="searchMovieId" type="text">&ndash;&gt;-->
+<!--        <br>-->
+        <div id="searchMovieDisplay"></div>
+        <br>
+        <button id="searchMovieBtn" class="btn button-outline-secondary" type="submit">Search Movie</button>
+    </div>
 </div>
-
 
 <!--Delete menu-->
 <div class="">
@@ -88,6 +101,9 @@
     <div class="deleteGroup">
         <select id="selectMenu2" class="hidden1 select">
             <option>Delete a movie</option>
+            <label for="deleteMovie">Delete</label>
+            <input id="deleteMovie" type="text">
+            <div id="displayDeletedMovieSelection" ></div>
         </select>
         <button id="delete-movie" class="hidden1 btn btn-danger">Delete movie</button>
     </div>
