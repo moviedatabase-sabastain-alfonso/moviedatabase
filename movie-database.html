@@ -24,24 +24,26 @@
 <div id="container" class=" row d-flex"></div>
 
 
-
+<hr>
     <!--EDIT MENU-->
-<div class="rightSide d-flex row">
-    <div class="">
-        <button id="showEdit" class="btn btn-outline-secondary">Edit</button>
-        <select  id="selectMenu" class="hidden1 select"></select>
+<div class="container">
+<div class="d-flex column">
+    <div class="row justify-content-end">
+<!--        <button id="showEdit" class="btn btn-outline-secondary">Edit</button>-->
+<!--        <select  id="selectMenu" class="hidden1 select"></select>-->
         <div class="hidden1 editMovie" id="editMovie">
-            <label for="newTitle">New Title </label>
-            <input type="text" id="newTitle">
-            <br>
-            <label for="newGenre">New Genre </label>
-            <input type="text" id="newGenre">
-            <br>
-            <label for="newRating">New Rating </label>
-            <input type="text" id="newRating">
-            <br>
-            <label for="newActor">New Actor </label>
-            <input type="text" id="newActor">
+            <h3>Edit Movie</h3>
+<!--            <label for="newTitle">New Title </label>-->
+<!--            <input type="text" id="newTitle">-->
+<!--            <br>-->
+<!--            <label for="newGenre">New Genre </label>-->
+<!--            <input type="text" id="newGenre">-->
+<!--            <br>-->
+<!--            <label for="newRating">New Rating </label>-->
+<!--            <input type="text" id="newRating">-->
+<!--            <br>-->
+<!--            <label for="newActor">New Actor </label>-->
+<!--            <input type="text" id="newActor">-->
             <br>
             <label for="idToEdit">Id </label>
             <input type="text" id="idToEdit">
@@ -51,15 +53,16 @@
             </div>
 
             <br>
-            <button id="changeMovie" class="btn btn-outline-secondary">Update Movie</button>
+            <button id="changeMovie" class="btn btn-outline-warning">Update Movie</button>
         </div>
     </div>
-</div>
+
 
 <!--Post menu-->
 <div class="">
-    <button id="post-id" class="btn btn-outline-secondary">Post Movie</button>
+<!--    <button id="post-id" class="btn btn-outline-secondary">Post Movie</button>-->
     <div class="hidden1 editMovie" id="postMovie">
+        <h3>Create Movie</h3>
         <label for="createTitle">Title </label>
         <input type="text" id="createTitle">
         <br>
@@ -84,7 +87,7 @@
 <!--</div>-->
 <div class="">
     <div class="hidden1 editMovie">
-        <h3>Search Comments</h3>
+        <h3>Search</h3>
         <label for="searchTitle">Title </label>
         <input  id="searchTitle" type="text">
         <br>
@@ -99,18 +102,19 @@
 
 <!--Delete menu-->
 <div class="">
-    <button class="remove-hidden btn btn-outline-secondary">Delete a movie</button>
+<!--    <button class="remove-hidden btn btn-outline-secondary">Delete a movie</button>-->
     <div class="deleteGroup">
-        <select id="selectMenu2" class="hidden1 select">
-            <option>Delete a movie</option>
-            <label for="deleteMovie">Delete</label>
+<!--        <select id="selectMenu2" class="hidden1 select">-->
+<!--            <option>Delete a movie</option>-->
+            <label for="deleteMovie">Delete Movie</label>
             <input id="deleteMovie" type="text">
             <div id="displayDeletedMovieSelection" ></div>
-        </select>
+<!--        </select>-->
         <button id="delete-movie" class="hidden1 btn btn-danger">Delete movie</button>
     </div>
 </div>
-
+</div>
+</div>
 
 <!--    <header>-->
 <!--    <div class="bg-info" >-->
