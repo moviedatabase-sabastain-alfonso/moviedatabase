@@ -4,28 +4,47 @@
     //glitch database
     const API_URL = `https://upbeat-hail-splash.glitch.me/movies`;
 
+
+
+
+
     // OMBD API Search Function
     let getOmbdData = (search, year) =>{
         const API_OMBD_URL = `http://www.omdbapi.com/?t=${search}&y=${year}&apikey=${OMBD_API}&`;
         return fetch(API_OMBD_URL+search).then(response => response.json()).catch(error => console.error(error));
     }
-    getOmbdData("matrix", "1999").then(data => console.log(data));
+
+    let getPosterData = (search, year) =>{
+        const API_POSTER_URL = `http://img.omdbapi.com/?t=${search}&y=${year}&apikey${OMBD_API}&`;
+        return fetch(API_POSTER_URL+search).then(response => response.json()).catch(error => console.error(error));
+    }
+
 
     // function to retrieve/fetch movie info from glitch database
     let getMovieInfo = () =>{
         return fetch(API_URL).then(response => response.json()).catch(error => console.error(error));
     }
 
+    // loading img
+    $("#container").append(`<div><img src="img/giphy.gif"></div>`);
+
+
     // function to render movies on html div  <-- start -->
     let renderMovieInfo = () =>{
         getMovieInfo().then(data => {
             data.forEach(function(element){
-                // console.log(element.id);
-                return $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${element.title}, <strong>Movie Id: </strong>${element.id}, <strong>Movie Plot: </strong>"${element.plot}"</div> `);
+                console.log(element.poster);
+                console.log(typeof(element.poster));
+                return $('#container').append(`<div class="card" style="max-width: 250px"><div id="imgContainer" style="max-width: 250px; max-height: 500px;"><img style="max-width: 250px; max-height: 400px;" src=${element.poster}></div> <h3>Movie Title: </h3>${element.title}, <strong>Movie Id: </strong>${element.id}, <strong>Movie Plot: </strong>"${element.plot}"</div> `);
             })
         });
     }
-    renderMovieInfo();
+
+    let loadData = setTimeout(function() {
+        $('#container').html(" ");
+        renderMovieInfo();
+    }, 5000);
+
 // <-- end of function -->
 
     // search function
@@ -36,7 +55,8 @@
         getMovieInfo().then(data => {
             data.forEach(function(movie){
                 if(movie.title === movieSearch || movie.id === Number(movieSearch))  {
-                    $('#searchMovieDisplay').append(`<div class="card bg-info"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>${movie.plot}</div>`);
+                    console.log(movie.poster);
+                    $('#searchMovieDisplay').append(`<div class="card bg-info"><div id="imgContainer" style="width: 200px"><img src=${movie.poster}></div> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>${movie.plot}</div>`);
                     $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`);
                 }
             })
@@ -122,19 +142,19 @@
                     // alert((`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`));
                     let confirmed = confirm(`Confirm you would like to delete Movie title:${movie.title} Movie Id: ${movie.id}?`) ? "true" : "false";
                     if (confirmed === "true"){
-                    console.log(confirmed);
-                    let deleteMovie = (id) => {
-                        let options ={
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json"
+                        console.log(confirmed);
+                        let deleteMovie = (id) => {
+                            let options ={
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
                             }
+                            return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
                         }
-                        return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
-                    }
-                    deleteMovie(movie.id).then(data => console.log(data));
-                    alert(movie.title + " deleted.");
-                    location.reload();
+                        deleteMovie(movie.id).then(data => console.log(data));
+                        alert(movie.title + " deleted.");
+                        location.reload();
                     } else {
                         alert("Requested Aborted!")
                     }
@@ -144,6 +164,11 @@
         $("#deleteMovie").val(" ");
     })
     // end: *** end of call ***
+
+    // $("#selectMenu2").change(function(){
+    //     let inputVal = $(this).val();
+    // })
+
 
 
     // start: edit movie function
@@ -159,36 +184,36 @@
     }
     // end of function
 
-   $("#changeMovie").click(function(e){
-       e.preventDefault();
-       $("#displayMovieToEdit").html(" ");
-       $("#container").html(" ");
-       $("#searchMovieDisplay").html(" ");
-       let id = $("#idToEdit").val();
-       console.log(typeof(id));
-       getMovieById(id).then(data => {
-               if (data.id === Number(id)) {
-                   $('#displayMovieToEdit').append(`<div class="card"> <h3>Movie Title: </h3>${data.title}, <strong>Movie Id: </strong>${data.id}, <strong>Movie Plot: </strong>${data.plot}</div>`);
-               }
-           let newTitle = prompt("Enter new title: ");
-           let movie = data.title;
-           console.log(movie);
-           let editTemplate ={
-               actors: data.actors,
-               director: data.director,
-               genre: data.genre,
-               plot: data.plot,
-               poster: data.poster,
-               rating: data.rating,
-               title: newTitle,
-               year: data.year
-           }
-           console.log(newTitle);
-           console.log(editTemplate);
-           editMovie(editTemplate,id).then(data => console.log(data));
-       })
-       $('#idToEdit').val(" ");
-   })
+    $("#changeMovie").click(function(e){
+        e.preventDefault();
+        $("#displayMovieToEdit").html(" ");
+        $("#container").html(" ");
+        $("#searchMovieDisplay").html(" ");
+        let id = $("#idToEdit").val();
+        console.log(typeof(id));
+        getMovieById(id).then(data => {
+            if (data.id === Number(id)) {
+                $('#displayMovieToEdit').append(`<div class="card"> <h3>Movie Title: </h3>${data.title}, <strong>Movie Id: </strong>${data.id}, <strong>Movie Plot: </strong>${data.plot}</div>`);
+            }
+            let newTitle = prompt("Enter new title: ");
+            let movie = data.title;
+            console.log(movie);
+            let editTemplate ={
+                actors: data.actors,
+                director: data.director,
+                genre: data.genre,
+                plot: data.plot,
+                poster: data.poster,
+                rating: data.rating,
+                title: newTitle,
+                year: data.year
+            }
+            console.log(newTitle);
+            console.log(editTemplate);
+            editMovie(editTemplate,id).then(data => console.log(data));
+        })
+        $('#idToEdit').val(" ");
+    })
 
 
 
