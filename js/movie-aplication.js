@@ -142,19 +142,19 @@
                     // alert((`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`));
                     let confirmed = confirm(`Confirm you would like to delete Movie title:${movie.title} Movie Id: ${movie.id}?`) ? "true" : "false";
                     if (confirmed === "true"){
-                    console.log(confirmed);
-                    let deleteMovie = (id) => {
-                        let options ={
-                            method: "DELETE",
-                            headers: {
-                                "Content-Type": "application/json"
+                        console.log(confirmed);
+                        let deleteMovie = (id) => {
+                            let options ={
+                                method: "DELETE",
+                                headers: {
+                                    "Content-Type": "application/json"
+                                }
                             }
+                            return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
                         }
-                        return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
-                    }
-                    deleteMovie(movie.id).then(data => console.log(data));
-                    alert(movie.title + " deleted.");
-                    location.reload();
+                        deleteMovie(movie.id).then(data => console.log(data));
+                        alert(movie.title + " deleted.");
+                        location.reload();
                     } else {
                         alert("Requested Aborted!")
                     }
@@ -184,36 +184,36 @@
     }
     // end of function
 
-   $("#changeMovie").click(function(e){
-       e.preventDefault();
-       $("#displayMovieToEdit").html(" ");
-       $("#container").html(" ");
-       $("#searchMovieDisplay").html(" ");
-       let id = $("#idToEdit").val();
-       console.log(typeof(id));
-       getMovieById(id).then(data => {
-               if (data.id === Number(id)) {
-                   $('#displayMovieToEdit').append(`<div class="card"> <h3>Movie Title: </h3>${data.title}, <strong>Movie Id: </strong>${data.id}, <strong>Movie Plot: </strong>${data.plot}</div>`);
-               }
-           let newTitle = prompt("Enter new title: ");
-           let movie = data.title;
-           console.log(movie);
-           let editTemplate ={
-               actors: data.actors,
-               director: data.director,
-               genre: data.genre,
-               plot: data.plot,
-               poster: data.poster,
-               rating: data.rating,
-               title: newTitle,
-               year: data.year
-           }
-           console.log(newTitle);
-           console.log(editTemplate);
-           editMovie(editTemplate,id).then(data => console.log(data));
-       })
-       $('#idToEdit').val(" ");
-   })
+    $("#changeMovie").click(function(e){
+        e.preventDefault();
+        $("#displayMovieToEdit").html(" ");
+        $("#container").html(" ");
+        $("#searchMovieDisplay").html(" ");
+        let id = $("#idToEdit").val();
+        console.log(typeof(id));
+        getMovieById(id).then(data => {
+            if (data.id === Number(id)) {
+                $('#displayMovieToEdit').append(`<div class="card"> <h3>Movie Title: </h3>${data.title}, <strong>Movie Id: </strong>${data.id}, <strong>Movie Plot: </strong>${data.plot}</div>`);
+            }
+            let newTitle = prompt("Enter new title: ");
+            let movie = data.title;
+            console.log(movie);
+            let editTemplate ={
+                actors: data.actors,
+                director: data.director,
+                genre: data.genre,
+                plot: data.plot,
+                poster: data.poster,
+                rating: data.rating,
+                title: newTitle,
+                year: data.year
+            }
+            console.log(newTitle);
+            console.log(editTemplate);
+            editMovie(editTemplate,id).then(data => console.log(data));
+        })
+        $('#idToEdit').val(" ");
+    })
 
 })();
 
