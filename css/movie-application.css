@@ -19,6 +19,37 @@ body {
     border-radius: 5px;
     background: darkorchid;
 }
+
+
+.postMovie{
+    border: 2px solid darkblue;
+    padding: 15px;
+    border-radius: 5px;
+    background: darkorchid;
+}
+
+.searchMovie{
+    border: 2px solid darkblue;
+    padding: 15px;
+    border-radius: 5px;
+    background: darkorchid;
+}
+
+
+.rightSide {
+    float: right;
+}
+
+
+.textBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
 .posters{
     padding: 10px 20px;
     margin: 10px;
