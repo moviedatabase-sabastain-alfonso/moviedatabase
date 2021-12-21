@@ -5,20 +5,29 @@
     const API_URL = `https://upbeat-hail-splash.glitch.me/movies`;
 
 
-
-
-
     // OMBD API Search Function
     let getOmbdData = (search, year) =>{
         const API_OMBD_URL = `http://www.omdbapi.com/?t=${search}&y=${year}&apikey=${OMBD_API}&`;
         return fetch(API_OMBD_URL+search).then(response => response.json()).catch(error => console.error(error));
     }
 
+    /// poster info
     let getPosterData = (search, year) =>{
         const API_POSTER_URL = `http://img.omdbapi.com/?t=${search}&y=${year}&apikey${OMBD_API}&`;
         return fetch(API_POSTER_URL+search).then(response => response.json()).catch(error => console.error(error));
     }
 
+    // start: *** delete movie function ***
+    let deleteMovie = (id) => {
+        let options ={
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }
+        return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
+    }
+    // end: *** delete function ***
 
     // function to retrieve/fetch movie info from glitch database
     let getMovieInfo = () =>{
@@ -28,24 +37,52 @@
     // loading img
     $("#container").append(`<div><img src="img/giphy.gif"></div>`);
 
-
-    // function to render movies on html div  <-- start -->
-    let renderMovieInfo = () =>{
-        getMovieInfo().then(data => {
-            data.forEach(function(element){
-                console.log(element.poster);
-                console.log(typeof(element.poster));
-                return $('#container').append(`<div class="card" style="max-width: 250px"><div id="imgContainer" style="max-width: 250px; max-height: 500px;"><img style="max-width: 250px; max-height: 400px;" src=${element.poster}></div> <h3>Movie Title: </h3>${element.title}, <strong>Movie Id: </strong>${element.id}, <strong>Movie Plot: </strong>"${element.plot}"</div> `);
-            })
-        });
-    }
-
     let loadData = setTimeout(function() {
         $('#container').html(" ");
         renderMovieInfo();
     }, 5000);
 
+    // reload / refresh
+
+    let reloadRefresh = ()=>{
+        location.reload();
+    }
+
+
+    // function to render movies on html div  <-- start -->
+    let renderMovieInfo = () =>{
+        getMovieInfo().then(data => {
+            data.forEach(function(element){
+                // console.log(element.poster);
+                // console.log(typeof(element.poster));
+                 $('#container').append(`<div class="card shadow p-3 mb-5" style="max-width: 250px" xmlns="http://www.w3.org/1999/html">
+                                                    <div id="imgContainer">
+                                                        <img class="img-thumbnail" style="height: 400px; width: 250px;" src=${element.poster}>
+                                                    </div> 
+                                                        <h3>${element.title}</h3><h5>${element.year}</h5> <strong>Plot: </strong>"${element.plot}" <figcaption class="figure-caption">Movie Id: ${element.id}</figcaption>
+                                                        <footer>
+                                                            <button id=${element.id} class="deleteButtons" type="submit">Delete</button>
+                                                        </footer>
+                                                </div> `);
+            })
+            $("footer button").click(function(){
+                let tempId = Number(this.id);
+                console.log(typeof(tempId));
+                data.forEach(function(element){
+                    if(element.id === tempId){
+                        alert(`${element.title} has been deleted.`);
+                        return deleteMovie(tempId);
+                    }
+                })
+            })
+        });
+    }
+
+
 // <-- end of function -->
+
+
+
 
     // search function
     $('#searchMovieBtn').click(function(){
@@ -56,7 +93,7 @@
             data.forEach(function(movie){
                 if(movie.title === movieSearch || movie.id === Number(movieSearch))  {
                     console.log(movie.poster);
-                    $('#searchMovieDisplay').append(`<div class="card bg-info"><div id="imgContainer" style="width: 200px"><img src=${movie.poster}></div> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>${movie.plot}</div>`);
+                    $('#searchMovieDisplay').append(`<div class="card bg-info"><div id="imgContainer" style="width: 225px"><img src=${movie.poster}></div> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>${movie.plot}</div>`);
                     $('#container').append(`<div class="card"> <h3>Movie Title: </h3>${movie.title}, <strong>Movie Id: </strong>${movie.id}, <strong>Movie Plot: </strong>"${movie.plot}"</div>`);
                 }
             })
@@ -88,6 +125,7 @@
         e.preventDefault();
         let tempMovie = $("#createTitle").val();
         let tempYear = $("#createYear").val();
+        $("#postMovieDisplay").html(" ");
         console.log(tempMovie);
         console.log(tempYear)
         getOmbdData(tempMovie, tempYear).then(data => {
@@ -117,17 +155,10 @@
     })
 
 
-    // start: *** delete movie function ***
-    let deleteMovie = (id) => {
-        let options ={
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-        return fetch(`${API_URL}/${id}`, options).then(response => response.json()).catch(error => console.error(error));
-    }
-    // end: *** delete function ***
+    //  delete at source
+
+
+    //
 
     // start: *** calls delete function ***
     $("#delete-movie").click(function(e){

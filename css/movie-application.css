@@ -13,11 +13,11 @@ body {
     justify-content: space-around;
 }
 
-.editMovie{
-    border: 2px solid darkblue;
+.editMovie, .deleteGroup{
+    border: 2px solid mediumpurple;
     padding: 3em;
     border-radius: 1em;
-    background: darkorchid;
+    background: lavender;
 }
 .posters{
     padding: 5em 10em;
@@ -25,13 +25,16 @@ body {
     width: 10em;
     height: auto;
     border: 2em;
-    background-color: darkorchid;
+    background-color: mediumpurple;
+}
+.card:hover {
+
+    border: 5px mediumpurple solid;
 }
 
 
-.posters{
-
-
+footer button:hover{
+    background-color: red;
 }
 
 /*@keyframes animatedgradient {*/
